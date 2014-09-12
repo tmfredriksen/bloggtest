@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Blog.Context;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,10 +10,12 @@ namespace Blog.Controllers
 {
     public class BlogController : Controller
     {
+        BlogContext db = new BlogContext();
+
         // GET: Blog
         public ActionResult Index()
         {
-            return View();
+            return View(db.Blogs.ToList());
         }
 
         // GET: Blog/Details/5
