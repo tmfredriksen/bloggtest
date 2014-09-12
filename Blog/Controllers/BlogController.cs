@@ -1,4 +1,5 @@
 ﻿using Blog.Context;
+using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,8 +24,8 @@ namespace Blog.Controllers
         {
             return View();
         }
-
-        // GET: Blog/Create
+        // GET: Blog/Create           
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -32,13 +33,19 @@ namespace Blog.Controllers
 
         // POST: Blog/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Blogg blog)
         {
             try
             {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                if(ModelState.IsValid)
+                {
+                    db.Blogs.Add(blog);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                return View(blog);
             }
             catch
             {
