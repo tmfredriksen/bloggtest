@@ -1,5 +1,4 @@
-﻿using Blog.Context;
-using Blog.Models;
+﻿using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +10,7 @@ namespace Blog.Controllers
 {
     public class BlogController : Controller
     {
-        BlogContext db = new BlogContext();
+        DbModel db = new DbModel();
 
         // GET: Blog
         public ActionResult Index()
